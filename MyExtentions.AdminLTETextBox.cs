@@ -29,8 +29,11 @@ namespace BootstrapHtmlHelper
         /// <param name="showLabel"></param>
         /// <param name="hasValidation"></param>
         /// <returns></returns>
-        public static IHtmlString AdminLTETextBoxFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
-            Expression<Func<TModel, TProperty>> expression,
+        public static IHtmlString AdminLTETextBox
+            //<TModel, TProperty>
+            (this HtmlHelper htmlHelper,
+            //Expression<Func<TModel, TProperty>> expression,
+            string name,
             IDictionary<string, object> htmlLabelAttributes,
             IDictionary<string, object> htmlTextBoxAttributes,
             IDictionary<string, object> htmlGroupAttributes,
@@ -40,7 +43,7 @@ namespace BootstrapHtmlHelper
             bool hasValidation = true,
             bool showGlyphicons = false)
         {
-            string name = ExpressionHelper.GetExpressionText(expression);
+            //string name = ExpressionHelper.GetExpressionText(expression);
             string fullName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(name);
             if (String.IsNullOrEmpty(fullName))
             {
@@ -73,7 +76,7 @@ namespace BootstrapHtmlHelper
             }
 
             if (htmlTextBoxAttributes == null) htmlTextBoxAttributes = new Dictionary<String, object>();
-
+            /*
             var memberExpression = expression.Body as MemberExpression;
             if (memberExpression != null)
             {
@@ -81,16 +84,17 @@ namespace BootstrapHtmlHelper
                 var y = x.GetAttribute<DisplayAttribute>();
                 htmlTextBoxAttributes.Add(new KeyValuePair<string, object>("placeholder", y.Name));
             }
+            */
             //htmlTextBoxAttributes.Add(new KeyValuePair<string, object>("placeholder", expression.Name));
 
-            var textbox = htmlHelper.TextBoxFor(expression, htmlTextBoxAttributes);
+            var textbox = htmlHelper.TextBox(name:name,value:"", htmlAttributes:htmlTextBoxAttributes);
 
 
             modelState = htmlHelper.ViewData.ModelState[modelName];
             ModelErrorCollection modelErrors = (modelState == null) ? null : modelState.Errors;
             ModelError modelError = (((modelErrors == null) || (modelErrors.Count == 0)) ? null : modelErrors.FirstOrDefault(m => !String.IsNullOrEmpty(m.ErrorMessage)) ?? modelErrors[0]);
 
-            var validationSummary = htmlHelper.ValidationMessageFor(expression, null,
+            var validationSummary = htmlHelper.ValidationMessage(name, null,
                 new { @class = "help-block" });
 
 
@@ -108,7 +112,7 @@ namespace BootstrapHtmlHelper
 
             //if (hasValidation) formGroup.AddCssClass("has-warning");
 
-            formGroup.InnerHtml = (showLabel ? htmlHelper.LabelFor(expression, htmlLabelAttributes).ToHtmlString() : "") +
+            formGroup.InnerHtml = (showLabel ? htmlHelper.Label(name, htmlLabelAttributes).ToHtmlString() : "") +
                 textbox.ToHtmlString() +
                 (hasValidation ? validationSummary.ToHtmlString() : "") +
                 (showGlyphicons ? spanGlyphicons.ToString() : "");
