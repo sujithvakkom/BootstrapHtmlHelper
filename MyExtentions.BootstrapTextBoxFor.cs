@@ -35,15 +35,8 @@ namespace BootstrapHtmlHelper
             bool showLabel = true,
             bool hasValidation = true)
         {
-            
-            var formGroup = new TagBuilder("div");
-            if (htmlGroupAttributes==null)
-            formGroup.AddCssClass("form-group");
-            else
-                foreach (var attribute in htmlGroupAttributes)
-                {
-                    formGroup.Attributes.Add(attribute.Key, attribute.Value.ToString());
-                }
+
+            var formGroup = MyExtentions.getTag(null, null);
 
             if (htmlTextBoxAttributes == null) htmlTextBoxAttributes = new Dictionary<String, object>();
 

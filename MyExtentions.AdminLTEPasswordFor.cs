@@ -39,6 +39,17 @@ namespace BootstrapHtmlHelper
             bool hasValidation = true,
             bool showGlyphicons = false)
         {
+            string name = ExpressionHelper.GetExpressionText(expression);
+            string fullName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(name);
+            if (String.IsNullOrEmpty(fullName))
+            {
+                throw new ArgumentException("Null name");
+            }
+
+            // If there are any errors for a named field, we add the css attribute.
+            ModelState modelState;
+
+            string modelName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(name);
 
             var formGroup = new TagBuilder("div");
             if (htmlGroupAttributes == null)
@@ -46,8 +57,20 @@ namespace BootstrapHtmlHelper
             else
                 foreach (var attribute in htmlGroupAttributes)
                 {
-                    formGroup.Attributes.Add(attribute.Key, attribute.Value.ToString());
+                    formGroup.MergeAttribute(attribute.Key, attribute.Value.ToString());
                 }
+
+            formGroup.MergeAttribute("name", "form-group-" + fullName, true);
+            //If Model has error UI is updated
+            if (htmlHelper.ViewData.ModelState.TryGetValue(fullName, out modelState))
+            {
+                if (modelState.Errors.Count > 0)
+                {
+                    formGroup.AddCssClass("has-error");
+                }
+            }
+
+
 
             if (htmlTextBoxAttributes == null) htmlTextBoxAttributes = new Dictionary<String, object>();
 
@@ -62,7 +85,14 @@ namespace BootstrapHtmlHelper
 
             var textbox = htmlHelper.PasswordFor(expression, htmlTextBoxAttributes);
 
-            var validationSummary = htmlHelper.ValidationMessageFor(expression);
+
+
+            modelState = htmlHelper.ViewData.ModelState[modelName];
+            ModelErrorCollection modelErrors = (modelState == null) ? null : modelState.Errors;
+            ModelError modelError = (((modelErrors == null) || (modelErrors.Count == 0)) ? null : modelErrors.FirstOrDefault(m => !String.IsNullOrEmpty(m.ErrorMessage)) ?? modelErrors[0]);
+
+            var validationSummary = htmlHelper.ValidationMessageFor(expression, null,
+                new { @class = "help-block" });
 
 
             ///     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

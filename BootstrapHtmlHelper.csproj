@@ -43,10 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyExtentions.AdminLTEActionLink.cs" />
+    <Compile Include="MyExtentions.AdminLTECheckBoxFor.cs" />
+    <Compile Include="MyExtentions.AdminLTEDropDownList.cs" />
     <Compile Include="MyExtentions.AdminLTEPasswordFor.cs" />
     <Compile Include="MyExtentions.AdminLTETextBoxFor.cs" />
     <Compile Include="MyExtentions.BootstrapPasswordFor.cs" />
     <Compile Include="MyExtentions.BootstrapTextBoxFor.cs" />
+    <Compile Include="MyExtentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
