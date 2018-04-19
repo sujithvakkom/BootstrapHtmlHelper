@@ -21,4 +21,3 @@ C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.Mv
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.Mvc.xml
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.dll
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.pdb
-C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.csprojResolveAssemblyReference.cache
