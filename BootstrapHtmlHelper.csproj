@@ -46,11 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyExtentions.AdminLTEMenuActionLinkBlock.cs" />
     <Compile Include="MyExtentions.AdminLTECheckBoxFor.cs" />
     <Compile Include="MyExtentions.AdminLTEPasswordFor.cs" />
     <Compile Include="MyExtentions.AdminLTETextBox.cs" />
     <Compile Include="MyExtentions.AdminLTETextBoxFor.cs" />
     <Compile Include="MyExtentions.BootstrapPasswordFor.cs" />
+    <Compile Include="MyExtentions.IsSelected.cs" />
     <Compile Include="MyExtentions.BootstrapTextBoxFor.cs" />
     <Compile Include="MyExtentions.cs" />
     <Compile Include="MyExtentions.AdminLTEActionLink.cs" />

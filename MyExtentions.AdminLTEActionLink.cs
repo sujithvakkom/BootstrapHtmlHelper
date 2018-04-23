@@ -8,8 +8,6 @@ using System.Text;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web;
-using System.Web.Mvc;
-using System.Web.Mvc.Html;
 
 namespace BootstrapHtmlHelper
 {
@@ -64,23 +62,55 @@ namespace BootstrapHtmlHelper
                     htmlAttributes,carrot));
         }
 
+        public static string GenerateLink(RequestContext requestContext, RouteCollection routeCollection, string linkText, string routeName, string actionName, string controllerName, string protocol, string hostName, string fragment, RouteValueDictionary routeValues, IDictionary<string, object> htmlAttributes, HtmlHelper htmlHelper, string carrot = null)
+        {
+            return GenerateLinkInternal(requestContext, routeCollection, linkText, routeName, actionName, controllerName, protocol, hostName, fragment, routeValues, htmlAttributes, true /* includeImplicitMvcValues */,htmlHelper:htmlHelper);
+        }
+
         public static string GenerateLink(RequestContext requestContext, RouteCollection routeCollection, string linkText, string routeName, string actionName, string controllerName, RouteValueDictionary routeValues, IDictionary<string, object> htmlAttributes)
         {
             return GenerateLink(requestContext, routeCollection, linkText, routeName, actionName, controllerName, null /* protocol */, null /* hostName */, null /* fragment */, routeValues, htmlAttributes);
         }
 
-        public static string GenerateLink(RequestContext requestContext, RouteCollection routeCollection, string linkText, string routeName, string actionName, string controllerName, string protocol, string hostName, string fragment, RouteValueDictionary routeValues, IDictionary<string, object> htmlAttributes,string carrot=null)
+        public static string GenerateLink(RequestContext requestContext, RouteCollection routeCollection, string linkText, string routeName, string actionName, string controllerName, string protocol, string hostName, string fragment, RouteValueDictionary routeValues, IDictionary<string, object> htmlAttributes, string carrot = null)
         {
             return GenerateLinkInternal(requestContext, routeCollection, linkText, routeName, actionName, controllerName, protocol, hostName, fragment, routeValues, htmlAttributes, true /* includeImplicitMvcValues */);
         }
 
-        private static string GenerateLinkInternal(RequestContext requestContext, RouteCollection routeCollection, string linkText, string routeName, string actionName, string controllerName, string protocol, string hostName, string fragment, RouteValueDictionary routeValues, IDictionary<string, object> htmlAttributes, bool includeImplicitMvcValues, string carrot = null)
+        private static string GenerateLinkInternal(RequestContext requestContext, RouteCollection routeCollection, string linkText, string routeName, 
+            string actionName, string controllerName, string protocol, string hostName, string fragment, RouteValueDictionary routeValues, IDictionary<string, object> htmlAttributes, 
+            bool includeImplicitMvcValues, HtmlHelper htmlHelper,string carrot = null)
+        {
+            string url = UrlHelper.GenerateUrl(routeName, actionName, controllerName, protocol, hostName, fragment, routeValues, routeCollection, requestContext, includeImplicitMvcValues);
+
+            var selected = htmlHelper.IsSelected(actions: actionName, controllers: controllerName,cssClass:"active");
+
+            TagBuilder tagBuilderLi = new TagBuilder("li") { };
+            TagBuilder tagBuilderA = new TagBuilder("a")
+            {
+                InnerHtml = @"<i class="
+                + (!String.IsNullOrEmpty(carrot)?HttpUtility.HtmlEncode(carrot):String.Empty)
+                + @" aria-hidden=""true""></i>"
+                + @"<span>"
+                + ((!String.IsNullOrEmpty(linkText)) ? HttpUtility.HtmlEncode(linkText) : String.Empty)
+                + @"</span>"
+            };
+            tagBuilderA.MergeAttributes(htmlAttributes);
+            tagBuilderA.MergeAttribute("href", url);
+            tagBuilderLi.InnerHtml += tagBuilderA.ToString(TagRenderMode.Normal);
+            tagBuilderLi.MergeAttribute("class", selected);
+            return tagBuilderLi.ToString(TagRenderMode.Normal);
+        }
+
+        private static string GenerateLinkInternal(RequestContext requestContext, RouteCollection routeCollection, string linkText, string routeName, string actionName, 
+            string controllerName, string protocol, string hostName, string fragment, RouteValueDictionary routeValues, IDictionary<string, object> htmlAttributes, 
+            bool includeImplicitMvcValues,  string carrot = null)
         {
             string url = UrlHelper.GenerateUrl(routeName, actionName, controllerName, protocol, hostName, fragment, routeValues, routeCollection, requestContext, includeImplicitMvcValues);
             TagBuilder tagBuilder = new TagBuilder("a")
             {
                 InnerHtml = @"<i class="
-                + (!String.IsNullOrEmpty(carrot)?HttpUtility.HtmlEncode(carrot):String.Empty)
+                + (!String.IsNullOrEmpty(carrot) ? HttpUtility.HtmlEncode(carrot) : String.Empty)
                 + @" aria-hidden=""true""></i>"
                 + @"<span>"
                 + ((!String.IsNullOrEmpty(linkText)) ? HttpUtility.HtmlEncode(linkText) : String.Empty)
@@ -91,7 +121,7 @@ namespace BootstrapHtmlHelper
             return tagBuilder.ToString(TagRenderMode.Normal);
         }
 
-        #region 
+        #region Extras
         private static IDictionary<string, object> AnchorAttributes(string accessKey, string charset, string coords, string cssClass, string dir, string hrefLang, string id, string lang, string name, string rel, string rev, string shape, string style, string target, string title)
         {
             var htmlAttributes = Attributes(cssClass, id, style);
