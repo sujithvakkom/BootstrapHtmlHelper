@@ -5,3 +5,6 @@ D:\Users\srkrishnan\GitHub\BootstrapHtmlHelper\obj\Release\BootstrapHtmlHelper.d
 D:\Users\srkrishnan\GitHub\BootstrapHtmlHelper\obj\Release\BootstrapHtmlHelper.pdb
 D:\Users\srkrishnan\GitHub\BootstrapHtmlHelper\bin\Release\System.Web.Mvc.dll
 D:\Users\srkrishnan\GitHub\BootstrapHtmlHelper\bin\Release\System.Web.Mvc.xml
+C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Release\BootstrapHtmlHelper.csprojResolveAssemblyReference.cache
+C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Release\BootstrapHtmlHelper.dll
+C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Release\BootstrapHtmlHelper.pdb
