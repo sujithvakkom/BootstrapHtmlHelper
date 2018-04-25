@@ -87,11 +87,7 @@ namespace BootstrapHtmlHelper
 
             TagBuilder tagBuilderLi = new TagBuilder("li") { };
 
-            TagBuilder tagBuilderI = new TagBuilder("i");
-            foreach(var word in carrot.Split(new char[]{ ' ' }))
-            {
-                tagBuilderI.AddCssClass(word);
-            }
+            TagBuilder tagBuilderI = getCarrot(carrot);
 
             TagBuilder tagBuilderA = new TagBuilder("a")
             {
@@ -113,11 +109,7 @@ namespace BootstrapHtmlHelper
         {
             string url = UrlHelper.GenerateUrl(routeName, actionName, controllerName, protocol, hostName, fragment, routeValues, routeCollection, requestContext, includeImplicitMvcValues);
             
-            TagBuilder tagBuilderI = new TagBuilder("i");
-            foreach (var word in carrot.Split(new char[] { ' ' }))
-            {
-                tagBuilderI.AddCssClass(word);
-            }
+            TagBuilder tagBuilderI = getCarrot(carrot);
             TagBuilder tagBuilder = new TagBuilder("a")
             {
                 InnerHtml = tagBuilderI.ToString(renderMode: TagRenderMode.Normal)
