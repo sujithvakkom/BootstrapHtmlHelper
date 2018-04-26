@@ -61,7 +61,7 @@ namespace BootstrapHtmlHelper
                     routeValues as RouteValueDictionary ?? new RouteValueDictionary(routeValues),
                     htmlAttributes,carrot));
         }
-
+        #region helpers
         public static string GenerateLink(RequestContext requestContext, RouteCollection routeCollection, string linkText, string routeName, string actionName, string controllerName, string protocol, string hostName, string fragment, RouteValueDictionary routeValues, IDictionary<string, object> htmlAttributes, HtmlHelper htmlHelper, string carrot = null)
         {
             return GenerateLinkInternal(requestContext, routeCollection, linkText, routeName, actionName, controllerName, protocol, hostName, fragment, routeValues, htmlAttributes, true /* includeImplicitMvcValues */,htmlHelper:htmlHelper,carrot:carrot);
@@ -76,6 +76,7 @@ namespace BootstrapHtmlHelper
         {
             return GenerateLinkInternal(requestContext, routeCollection, linkText, routeName, actionName, controllerName, protocol, hostName, fragment, routeValues, htmlAttributes, true /* includeImplicitMvcValues */, carrot: carrot);
         }
+        #endregion
 
         private static string GenerateLinkInternal(RequestContext requestContext, RouteCollection routeCollection, string linkText, string routeName, 
             string actionName, string controllerName, string protocol, string hostName, string fragment, RouteValueDictionary routeValues, IDictionary<string, object> htmlAttributes, 
@@ -121,7 +122,6 @@ namespace BootstrapHtmlHelper
             tagBuilder.MergeAttribute("href", url);
             return tagBuilder.ToString(TagRenderMode.Normal);
         }
-
         #region Extras
         private static IDictionary<string, object> AnchorAttributes(string accessKey, string charset, string coords, string cssClass, string dir, string hrefLang, string id, string lang, string name, string rel, string rev, string shape, string style, string target, string title)
         {

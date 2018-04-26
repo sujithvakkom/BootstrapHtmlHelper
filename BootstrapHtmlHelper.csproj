@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.8.1.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\BusinessExcel\packages\HtmlAgilityPack.1.8.1\lib\Net40\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -46,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyExtentions.AjaxAdminLTEActionLink.cs" />
     <Compile Include="MyExtentions.AdminLTEMenuActionLinkBlock.cs" />
     <Compile Include="MyExtentions.AdminLTECheckBoxFor.cs" />
     <Compile Include="MyExtentions.AdminLTEPasswordFor.cs" />
@@ -60,6 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyExtentions.AdminLTEDropDownList.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
