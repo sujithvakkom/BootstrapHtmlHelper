@@ -35,3 +35,5 @@ C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.We
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\HtmlAgilityPack.dll
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\HtmlAgilityPack.pdb
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\HtmlAgilityPack.xml
+C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.Helpers.dll
+C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.Helpers.xml
