@@ -19,6 +19,7 @@ namespace BootstrapHtmlHelper
             int numericLinksCount = 5,
             string paginationStyle = null)
         {
+            if (String.IsNullOrEmpty(paginationStyle )) paginationStyle = "pagination";
             return PagerList(webGrid, mode, firstText, previousText, nextText, lastText, numericLinksCount, paginationStyle, explicitlyCalled: true);
         }
 
@@ -39,7 +40,6 @@ namespace BootstrapHtmlHelper
             int lastPage = totalPages - 1;
 
             var ul = new TagBuilder("ul");
-            ul.AddCssClass(paginationStyle);
             ul.AddCssClass("pagination");
 
             var li = new List<TagBuilder>();
@@ -58,7 +58,7 @@ namespace BootstrapHtmlHelper
                 {
                     firstText = "First";
                 }
-
+                var url = webGrid.GetPageUrl(0);
                 var part = new TagBuilder("li")
                 {
                     InnerHtml = GridLink(webGrid, webGrid.GetPageUrl(0), firstText)
@@ -211,6 +211,7 @@ namespace BootstrapHtmlHelper
             builder.MergeAttribute("href", url);
             if (webGrid.IsAjaxEnabled)
             {
+                builder.MergeAttribute("data-swhglnk", "true");
             }
             builder.AddCssClass("page-link");
             return builder.ToString(TagRenderMode.Normal);
