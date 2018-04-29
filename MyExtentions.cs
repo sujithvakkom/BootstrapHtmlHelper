@@ -23,5 +23,15 @@ namespace BootstrapHtmlHelper
             return formGroup;
         }
 
+        public static TagBuilder getCarrot(string carrot = null)
+        {
+            TagBuilder tagBuilderI = new TagBuilder("i");
+            if (carrot != null)
+                foreach (var word in carrot.Split(new char[] { ' ' }))
+                {
+                    tagBuilderI.AddCssClass(word);
+                }
+            return tagBuilderI;
+        }
     }
 }

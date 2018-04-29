@@ -91,8 +91,9 @@ namespace BootstrapHtmlHelper
             ModelErrorCollection modelErrors = (modelState == null) ? null : modelState.Errors;
             ModelError modelError = (((modelErrors == null) || (modelErrors.Count == 0)) ? null : modelErrors.FirstOrDefault(m => !String.IsNullOrEmpty(m.ErrorMessage)) ?? modelErrors[0]);
 
+            string classHelpBlock = "help-block";
             var validationSummary = htmlHelper.ValidationMessageFor(expression, null,
-                new { @class = "help-block" });
+                new { @class = classHelpBlock });
 
 
             ///     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
