@@ -40,6 +40,7 @@ namespace BootstrapHtmlHelper
 
             var ul = new TagBuilder("ul");
             ul.AddCssClass(paginationStyle);
+            ul.AddCssClass("pagination");
 
             var li = new List<TagBuilder>();
 
@@ -67,6 +68,7 @@ namespace BootstrapHtmlHelper
                 {
                     part.MergeAttribute("class", "disabled");
                 }
+                part.AddCssClass("page-item");
 
                 li.Add(part);
 
@@ -91,6 +93,7 @@ namespace BootstrapHtmlHelper
                     part.MergeAttribute("class", "disabled");
                 }
 
+                part.AddCssClass("page-item");
                 li.Add(part);
 
             }
@@ -124,6 +127,7 @@ namespace BootstrapHtmlHelper
                         part.MergeAttribute("class", "active");
                     }
 
+                    part.AddCssClass("page-item");
                     li.Add(part);
 
                 }
@@ -148,6 +152,7 @@ namespace BootstrapHtmlHelper
                     part.MergeAttribute("class", "disabled");
                 }
 
+                part.AddCssClass("page-item");
                 li.Add(part);
 
             }
@@ -169,6 +174,7 @@ namespace BootstrapHtmlHelper
                     part.MergeAttribute("class", "disabled");
                 }
 
+                part.AddCssClass("page-item");
                 li.Add(part);
 
             }
@@ -201,12 +207,12 @@ namespace BootstrapHtmlHelper
         private static String GridLink(WebGrid webGrid, string url, string text)
         {
             TagBuilder builder = new TagBuilder("a");
-            builder.SetInnerText(text+"ME");
+            builder.SetInnerText(text);
             builder.MergeAttribute("href", url);
             if (webGrid.IsAjaxEnabled)
             {
-                builder.MergeAttribute("data-swhglnk", "true");
             }
+            builder.AddCssClass("page-link");
             return builder.ToString(TagRenderMode.Normal);
         }
 
