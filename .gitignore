@@ -47,3 +47,4 @@ Temporary Items
 .apdisk
 *.csproj.user
 *.suo
+/HtmlPrefixScopeExtensions.cs

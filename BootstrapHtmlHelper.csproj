@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlPrefixScopeExtensions.cs" />
     <Compile Include="MyExtentions.AjaxAdminLTEActionLink.cs" />
     <Compile Include="MyExtentions.AdminLTEMenuActionLinkBlock.cs" />
     <Compile Include="MyExtentions.AdminLTECheckBoxFor.cs" />
