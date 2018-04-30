@@ -53,7 +53,11 @@
   <ItemGroup>
     <Compile Include="HtmlFieldPrefixScope.cs" />
     <Compile Include="HtmlPrefixScopeExtensions.cs" />
+    <Compile Include="MyExtentions.AdminLTESpan.cs" />
     <Compile Include="MyExtentions.AdminLTESpanFor.cs" />
+    <Compile Include="MyExtentions.AdminLTEParagraph.cs" />
+    <Compile Include="MyExtentions.AdminLTESorter.cs" />
+    <Compile Include="MyExtentions.AjaxAdminLTEAutocompleteFor.cs" />
     <Compile Include="MyExtentions.AjaxAdminLTEActionLink.cs" />
     <Compile Include="MyExtentions.AdminLTEMenuActionLinkBlock.cs" />
     <Compile Include="MyExtentions.AdminLTECheckBoxFor.cs" />
