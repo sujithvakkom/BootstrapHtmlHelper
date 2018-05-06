@@ -30,7 +30,7 @@ namespace BootstrapHtmlHelper
         private string _IDField;
         private string _DescriptionField;
         public string IDField { get { return _IDField == null ? "id" : _IDField; } set { _IDField = value; } }
-        public string DescriptionField { get { return _DescriptionField == null ? "text" : _DescriptionField; } set { _DescriptionFieldS = value; } }
+        public string DescriptionField { get { return _DescriptionField == null ? "text" : _DescriptionField; } set { _DescriptionField = value; } }
 
         public IEnumerable<SelectListItem> GetSelectionList()
         {

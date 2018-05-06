@@ -68,6 +68,7 @@ namespace BootstrapHtmlHelper
               */
         #endregion
 
+        #region script_desing
         const String AUTO_COMPLETE_DROP_SCRIPT =
         @"function formatItem(state) {
                                     if (!state.id) {
@@ -115,11 +116,12 @@ namespace BootstrapHtmlHelper
                                         // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
                                     });
                                 });";
+        #endregion 
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an appropriate nesting of generic types")]
         [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "The purpose of these helpers is to use default parameters to simplify common usage.")]
-        public static MvcHtmlString AdminLTEDropDownListFor<TModel>(this HtmlHelper<TModel> htmlHelper, 
-            Expression<Func<TModel, bool>> expression, 
+        public static MvcHtmlString AdminLTEDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, 
+            Expression<Func<TModel, TProperty>> expression, 
             IDictionary<string, object> htmlLabelAttributes,
             IDictionary<string, object> htmlDropDownAttributes,
             IDictionary<string, object> htmlGroupAttributes,
@@ -157,7 +159,6 @@ namespace BootstrapHtmlHelper
             }
 
             if (htmlDropDownAttributes == null) htmlDropDownAttributes = new Dictionary<String, object>();
-            s
             var memberExpression = expression.Body as MemberExpression;
             if (memberExpression != null)
             {
@@ -172,22 +173,27 @@ namespace BootstrapHtmlHelper
 
 
             //checkBoxLabel.InnerHtml = checkBoxSqure.ToString() + placeHolder;
-            var dropDown = (autoCompleteOptions == null) ? htmlHelper.DropDownListFor(expression,
+            MvcHtmlString dropDown = null;
+            IEnumerable<SelectListItem> selectDummy = new List<SelectListItem>() { };
+            if (autoCompleteOptions == null)
+                dropDown = (htmlHelper.DropDownListFor(expression,
             selectList: autoCompleteOptions.GetSelectionList(),
-            htmlAttributes: new Dictionary<string, string> { { "", "" } }) 
-            :
-            htmlHelper.DropDownListFor(expression,
-            selectList: null,
+            htmlAttributes: new Dictionary<string, string> { { "", "" } }));
+            else
+                dropDown =
+            (htmlHelper.DropDownListFor(expression,
+            selectList:selectDummy,
             htmlAttributes: new Dictionary<string, string>
             {
                 { "class", "form-control select2" }
-            });
+            }));
 
             TagBuilder script = new TagBuilder("script");
 
             JavaScriptResult x = new JavaScriptResult();
-            x.Script = string.Format(AUTO_COMPLETE_DROP_SCRIPT, autoCompleteOptions);
             
+            x.Script = AUTO_COMPLETE_DROP_SCRIPT.Inject(autoCompleteOptions);
+
             formGroup.InnerHtml = dropDown.ToHtmlString();
            
 
