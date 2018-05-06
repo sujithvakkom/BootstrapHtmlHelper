@@ -51,12 +51,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoCompleteOptions.cs" />
     <Compile Include="HtmlFieldPrefixScope.cs" />
     <Compile Include="HtmlPrefixScopeExtensions.cs" />
+    <Compile Include="MyExtentions.AdminLTEDropDownListFor.cs" />
     <Compile Include="MyExtentions.AdminLTESpan.cs" />
     <Compile Include="MyExtentions.AdminLTESpanFor.cs" />
     <Compile Include="MyExtentions.AdminLTEParagraph.cs" />
     <Compile Include="MyExtentions.AdminLTESorter.cs" />
+    <Compile Include="MyExtentions.AdminLTETextBoxFor.Ajax.AutoComplete.cs" />
     <Compile Include="MyExtentions.AjaxAdminLTEAutocompleteFor.cs" />
     <Compile Include="MyExtentions.AjaxAdminLTEActionLink.cs" />
     <Compile Include="MyExtentions.AdminLTEMenuActionLinkBlock.cs" />
