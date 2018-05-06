@@ -36,7 +36,6 @@ namespace BootstrapHtmlHelper
             IDictionary<string, object> htmlGroupAttributes,
             IDictionary<string, object> htmlGlyphiconsAttributes,
             String glyphiconsName,
-            AutoCompleteOptions autoCompleteOptions = null,
             bool showLabel = false,
             bool hasValidation = true,
             bool showGlyphicons = false)
