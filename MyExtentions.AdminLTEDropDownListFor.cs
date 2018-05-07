@@ -70,7 +70,7 @@ namespace BootstrapHtmlHelper
 
         #region script_desing
         const String AUTO_COMPLETE_DROP_SCRIPT =
-        @"function formatItem(state) {
+        @"function formatItem{ModelID}(state) {
                                     if (!state.id) {
                                         return state.text;
                                     }
@@ -79,8 +79,8 @@ namespace BootstrapHtmlHelper
                                     );
                                     return $state;
                                 }
-                                $('{ModelID}').ready(function () {
-                                    $('{ModelID}').select2({
+                                $('#{ModelID}').ready(function () {
+                                    $('#{ModelID}').select2({
                                         data:{FromatedSelectedData},
                                         placeholder:'{PlaceHolder}',
                                         ajax: {
@@ -115,7 +115,7 @@ namespace BootstrapHtmlHelper
                                                 catch (err) { alert(err.message) }
                                             }
                                         },
-                                        templateResult: formatItem
+                                        templateResult: formatItem{ModelID}
                                         // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
                                     });
                                 });";
@@ -255,7 +255,7 @@ namespace BootstrapHtmlHelper
             TagBuilder script = new TagBuilder("script");
             
 
-            autoCompleteOptions.ModelID = "#"+fullName;
+            autoCompleteOptions.ModelID = fullName;
             script.InnerHtml = AUTO_COMPLETE_DROP_SCRIPT.Inject(autoCompleteOptions);
 
             formGroup.InnerHtml = script.ToString(TagRenderMode.Normal)
