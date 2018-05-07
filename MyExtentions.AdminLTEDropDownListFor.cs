@@ -79,13 +79,16 @@ namespace BootstrapHtmlHelper
                                     );
                                     return $state;
                                 }
-                                $('#minimal').ready(function () {
-                                    $('#minimal').select2({
+                                $('{ModelID}').ready(function () {
+                                    $('{ModelID}').select2({
+                                        data:{FromatedSelectedData},
+                                        placeholder:'{PlaceHolder}',
                                         ajax: {
-                                            url: {AjaxURL},
+                                            url: '{AjaxURL}',
                                             data: function (params) {
                                                 var query = {
-                                                    Search: params.term
+                                                    Search: params.term,
+                                                    Page: params.page || 1
                                                 }
 
                                                 // Query parameters will be ?search=[term]&type=public
@@ -98,8 +101,8 @@ namespace BootstrapHtmlHelper
                                                     var pageArr = [];
                                                     $.each(data.OutputList, function (index, item) {
                                                         pageArr.push({
-                                                            id: {IDField},
-                                                            text: {DescriptionField}
+                                                            id: item.{IDField},
+                                                            text: item.{DescriptionField}
                                                         });
                                                     });
                                                     return {
@@ -116,8 +119,65 @@ namespace BootstrapHtmlHelper
                                         // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
                                     });
                                 });";
-        #endregion 
+        #endregion
 
+        /// <summary>
+        ///
+        /// @Html.AdminLTEDropDownListFor(
+        ///	m=>m.ItemCode,
+        ///	htmlLabelAttributes:null,
+        ///	htmlDropDownAttributes:new Dictionary<string,object>(){
+        ///			{"class","form-controlselect2"}
+        ///		},
+        ///	htmlGroupAttributes:null,
+        ///	htmlGlyphiconsAttributes:null,
+        ///	autoCompleteOptions:new AutoCompleteOptions()
+        ///		{
+        ///			AjaxOptions=newAjaxOptions()
+        ///			{
+        ///				HttpMethod = "GET",
+        ///				Url = Url.Action(
+        ///					actionName:"ItemAutoCompleter",
+        ///					controllerName:"JSON")
+        ///			},
+        ///			DescriptionField = "description",
+        ///			IDField = "item_code",
+        ///			Formate = "'<div><span>'+state.id+'</span></br>'+state.text+'</div>'",
+        ///			SelectedItem= ViewData["SELECTED_FILTED_ITEM"], //Current Select Item Model
+        ///			IsAutoComplete= true,
+        ///			SelectItems = null //Select List for Options
+        ///		}
+        ///)
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <typeparam name="TProperty"></typeparam>
+        /// <param name="htmlHelper"></param>
+        /// <param name="expression"></param>
+        /// <param name="htmlLabelAttributes"></param>
+        /// <param name="htmlDropDownAttributes"></param>
+        /// <param name="htmlGroupAttributes"></param>
+        /// <param name="htmlGlyphiconsAttributes"></param>
+        /// <param name="autoCompleteOptions">
+        ///	autoCompleteOptions:new AutoCompleteOptions()
+        ///		{
+        ///			AjaxOptions=newAjaxOptions()
+        ///			{
+        ///				HttpMethod = "GET",
+        ///				Url = Url.Action(
+        ///					actionName:"ItemAutoCompleter",
+        ///					controllerName:"JSON")
+        ///			},
+        ///			DescriptionField = "description",
+        ///			IDField = "item_code",
+        ///			Formate = "'<div><span>'+state.id+'</span></br>'+state.text+'</div>'",
+        ///			SelectedItem= ViewData["SELECTED_FILTED_ITEM"], //Current Select Item Model
+        ///			IsAutoComplete= true,
+        ///			SelectItems = null //Select List for Options
+        ///		}
+        /// </param>
+        /// <param name="showLabel"></param>
+        /// <param name="hasValidation"></param>
+        /// <returns>MvcHtmlString</returns>
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an appropriate nesting of generic types")]
         [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "The purpose of these helpers is to use default parameters to simplify common usage.")]
         public static MvcHtmlString AdminLTEDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, 
@@ -125,7 +185,6 @@ namespace BootstrapHtmlHelper
             IDictionary<string, object> htmlLabelAttributes,
             IDictionary<string, object> htmlDropDownAttributes,
             IDictionary<string, object> htmlGroupAttributes,
-            IDictionary<string, object> htmlGlyphiconsAttributes,
             AutoCompleteOptions autoCompleteOptions,
             bool showLabel = false,
             bool hasValidation = true)
@@ -159,13 +218,6 @@ namespace BootstrapHtmlHelper
             }
 
             if (htmlDropDownAttributes == null) htmlDropDownAttributes = new Dictionary<String, object>();
-            var memberExpression = expression.Body as MemberExpression;
-            if (memberExpression != null)
-            {
-                var z = memberExpression.Member;
-                var y = z.GetAttribute<DisplayAttribute>();
-                htmlDropDownAttributes.Add(new KeyValuePair<string, object>("placeholder", y.Name));
-            }
 
 
             string modelName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(name);
@@ -182,19 +234,34 @@ namespace BootstrapHtmlHelper
             else
                 dropDown =
             (htmlHelper.DropDownListFor(expression,
-            selectList:selectDummy,
-            htmlAttributes: new Dictionary<string, string>
+            selectList: selectDummy,
+            htmlAttributes: new
             {
-                { "class", "form-control select2" }
+                @class = "form-control select2",
+                @style = "width:100%"
             }));
 
+            var validationSummary = htmlHelper.ValidationMessageFor(expression, null,
+                new { @class = "help-block" });
+
+            var memberExpression = expression.Body as MemberExpression;
+            if (memberExpression != null)
+            {
+                var z = memberExpression.Member;
+                var y = z.GetAttribute<DisplayAttribute>();
+                autoCompleteOptions.PlaceHolder = y.Name;
+            }
+
             TagBuilder script = new TagBuilder("script");
-
-            JavaScriptResult x = new JavaScriptResult();
             
-            x.Script = AUTO_COMPLETE_DROP_SCRIPT.Inject(autoCompleteOptions);
 
-            formGroup.InnerHtml = dropDown.ToHtmlString();
+            autoCompleteOptions.ModelID = "#"+fullName;
+            script.InnerHtml = AUTO_COMPLETE_DROP_SCRIPT.Inject(autoCompleteOptions);
+
+            formGroup.InnerHtml = script.ToString(TagRenderMode.Normal)
+                + (showLabel ? htmlHelper.LabelFor(expression, htmlLabelAttributes).ToHtmlString() : "")
+                + dropDown.ToHtmlString()
+                + (hasValidation ? validationSummary.ToHtmlString() : "");
            
 
             return MvcHtmlString.Create(formGroup.ToString());

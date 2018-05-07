@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
@@ -31,6 +32,28 @@ namespace BootstrapHtmlHelper
         private string _DescriptionField;
         public string IDField { get { return _IDField == null ? "id" : _IDField; } set { _IDField = value; } }
         public string DescriptionField { get { return _DescriptionField == null ? "text" : _DescriptionField; } set { _DescriptionField = value; } }
+
+        public string ModelID { get; internal set; }
+        public string PlaceHolder { get; internal set; }
+
+        public object SelectedItem{get;set; }
+        private string _FromatedSelectedData;
+        public string FromatedSelectedData
+        {
+            get
+            {
+                try
+                {
+                    _FromatedSelectedData =
+                     (SelectedItem == null) ? "[]" :
+                     "[{"+string.Format("'id': '{0}','text': '{1}','selected': true", new object[] { MyExtentions.GetPropValue(SelectedItem, IDField).ToString(), MyExtentions.GetPropValue(SelectedItem, DescriptionField).ToString() })+"}]";
+                }catch(Exception ex)
+                {
+                    _FromatedSelectedData = "[]";
+                }
+                return _FromatedSelectedData;
+            }
+        }
 
         public IEnumerable<SelectListItem> GetSelectionList()
         {
