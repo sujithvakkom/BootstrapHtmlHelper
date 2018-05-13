@@ -71,12 +71,50 @@ namespace BootstrapHtmlHelper
         // Exceptions:
         //   T:System.ArgumentException:
         //     The linkText parameter is null or empty.
-        public static MvcHtmlString AjaxAdminLTEActionLink(this AjaxHelper ajaxHelper, string linkText, string actionName,string  controllerName, AjaxOptions ajaxOptions, string carrot = null)
+        public static MvcHtmlString AjaxAdminLTEActionLink(this AjaxHelper ajaxHelper, 
+            string linkText, 
+            string actionName, 
+            string controllerName, 
+            AjaxOptions ajaxOptions, 
+            bool isNavSideBar, 
+            string carrot = null)
+        {
+            if (isNavSideBar) return AjaxAdminLTEActionLink(
+                ajaxHelper,
+                linkText,
+                actionName,
+                controllerName,
+                ajaxOptions);
+            else
+            {
+                TagBuilder tagBuilderI = getCarrot(carrot);
+                MvcHtmlString actionLink = ajaxHelper.ActionLink(linkText, actionName, controllerName, ajaxOptions);
+
+                var doc = new HtmlDocument();
+                doc.LoadHtml(actionLink.ToHtmlString());
+                doc.DocumentNode.FirstChild.InnerHtml = (tagBuilderI.ToString(TagRenderMode.Normal) + doc.DocumentNode.FirstChild.InnerHtml);
+                return MvcHtmlString.Create(doc.DocumentNode.InnerHtml);
+            }
+
+        }
+        public static MvcHtmlString AjaxAdminLTEActionLink(this AjaxHelper ajaxHelper, string linkText, string actionName, string controllerName, AjaxOptions ajaxOptions, string carrot = null)
         {
             var selected = ajaxHelper.IsSelected(actions: actionName, controllers: null, cssClass: "active");
+            string listId =  controllerName +"-" + actionName;
+            TagBuilder tagBuilderLi = new TagBuilder("li");
+            tagBuilderLi.Attributes.Add(new System.Collections.Generic.KeyValuePair<string,string>("id", listId));
+                var funCal = ajaxOptions.OnSuccess == null ? "{0}" : ajaxOptions.OnSuccess;
 
-            TagBuilder tagBuilderLi = new TagBuilder("li") { };
+            try
+            {
+                funCal = String.Format(funCal, "set_this_active('" + listId + "')");
+            }
+            catch (Exception)
+            {
 
+            }
+
+            ajaxOptions.OnSuccess = funCal;
 
             TagBuilder tagBuilderI = getCarrot(carrot);
 
