@@ -162,11 +162,9 @@ namespace BootstrapHtmlHelper
 
             formGroup.InnerHtml = 
                 textboxStart.ToHtmlString() +
-                (hasValidation ? validationSummaryStartDate.ToHtmlString() : "") +
                 //(showGlyphicons ? spanGlyphicons.ToString() : "")+
                 inputGroupAddon.ToString() +
-                textboxEnd.ToHtmlString()+
-                (hasValidation ? validationSummaryEndDate.ToHtmlString() : "") +
+                textboxEnd.ToHtmlString() +
                 (showGlyphicons ? spanGlyphicons.ToString() : "");
             /*formGroup.SetInnerText(
                 (showLabel?htmlHelper.LabelFor(expression,htmlLabelAttributes).ToHtmlString():"")+
@@ -178,7 +176,9 @@ namespace BootstrapHtmlHelper
             TagBuilder div = new TagBuilder("div");
             div.InnerHtml = script.ToString(TagRenderMode.Normal) +
                 (showLabel ? htmlHelper.Label(label, htmlLabelAttributes).ToHtmlString() : "") +
-                formGroup.ToString(TagRenderMode.Normal);
+                formGroup.ToString(TagRenderMode.Normal) +
+                (hasValidation ? validationSummaryStartDate.ToHtmlString() : "")+
+                (hasValidation ? validationSummaryEndDate.ToHtmlString() : "");
 
             return MvcHtmlString.Create(div.ToString(TagRenderMode.Normal));
         }
