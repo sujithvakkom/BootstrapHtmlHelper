@@ -73,3 +73,5 @@ C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.dll
 C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.pdb
 C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.csprojResolveAssemblyReference.cache
+C:\WORKS\BootstrapHtmlHelper\bin\Debug\HtmlAgilityPack.pdb
+C:\WORKS\BootstrapHtmlHelper\bin\Debug\HtmlAgilityPack.xml
