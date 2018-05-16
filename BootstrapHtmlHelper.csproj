@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoCompleteOptions.cs" />
+    <Compile Include="DecimalExtention.cs" />
     <Compile Include="HtmlFieldPrefixScope.cs" />
     <Compile Include="HtmlPrefixScopeExtensions.cs" />
     <Compile Include="MyExtentions.AdminLTEDateRangePickerFor.cs" />
