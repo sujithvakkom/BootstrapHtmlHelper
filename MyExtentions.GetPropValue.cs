@@ -8,7 +8,7 @@ namespace BootstrapHtmlHelper
 {
     public static partial class MyExtentions
     {
-        public static object GetPropValue(object src, string propName)
+        public static object GetPropValue(this object src, string propName)
         {
             return src.GetType().GetProperty(propName).GetValue(src, null);
         }
