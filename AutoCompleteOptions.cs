@@ -46,8 +46,9 @@ namespace BootstrapHtmlHelper
                 {
                     _FromatedSelectedData =
                      (SelectedItem == null) ? "[]" :
-                     "[{"+string.Format("'id': '{0}','text': '{1}','selected': true", new object[] { MyExtentions.GetPropValue(SelectedItem, IDField).ToString(), MyExtentions.GetPropValue(SelectedItem, DescriptionField).ToString() })+"}]";
-                }catch(Exception ex)
+                     "[{" + string.Format("'id': '{0}','text': '{1}','selected': true", new object[] { SelectedItem.GetPropValue(IDField).ToString(), SelectedItem.GetPropValue(DescriptionField).ToString() }) + "}]";
+                }
+                catch (Exception)
                 {
                     _FromatedSelectedData = "[]";
                 }

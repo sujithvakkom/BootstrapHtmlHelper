@@ -73,3 +73,4 @@ C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.dll
 C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.pdb
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.Helpers.dll
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.Helpers.xml
+C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.csprojResolveAssemblyReference.cache
