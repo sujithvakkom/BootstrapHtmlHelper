@@ -117,6 +117,7 @@ namespace BootstrapHtmlHelper
                                         },
                                         templateResult: formatItem{ModelID}
                                         // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+
                                     });
                                 });";
         #endregion
@@ -227,6 +228,7 @@ namespace BootstrapHtmlHelper
             //checkBoxLabel.InnerHtml = checkBoxSqure.ToString() + placeHolder;
             MvcHtmlString dropDown = null;
             IEnumerable<SelectListItem> selectDummy = new List<SelectListItem>() { };
+            
             if (autoCompleteOptions == null)
                 dropDown = (htmlHelper.DropDownListFor(expression,
             selectList: autoCompleteOptions.GetSelectionList(),

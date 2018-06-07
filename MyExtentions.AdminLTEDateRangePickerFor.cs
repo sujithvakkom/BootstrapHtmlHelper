@@ -107,10 +107,18 @@ namespace BootstrapHtmlHelper
                 htmlTextBoxAttributes.Add(new KeyValuePair<string, object>("placeholder", y.Name));
             }
 
+            //var memberExpressionEnd = expressionEndDate.Body as MemberExpression;
+            //if (memberExpressionStart != null)
+            //{
+            //    var x = memberExpressionStart.Member;
+            //    var y = x.GetAttribute<DisplayAttribute>();
+            //    htmlTextBoxAttributesEnd.Add(new KeyValuePair<string, object>("placeholder", y.Name));
+            //}
+            ////Updated by rafeeq 
             var memberExpressionEnd = expressionEndDate.Body as MemberExpression;
-            if (memberExpressionStart != null)
+            if (memberExpressionEnd != null)
             {
-                var x = memberExpressionStart.Member;
+                var x = memberExpressionEnd.Member;
                 var y = x.GetAttribute<DisplayAttribute>();
                 htmlTextBoxAttributesEnd.Add(new KeyValuePair<string, object>("placeholder", y.Name));
             }
