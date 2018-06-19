@@ -1,11 +1,4 @@
-﻿using BusinessExcel.Models.ChartJs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using BusinessExcel.Models.ChartJs;
-
-namespace BusinessExcel.Models.ChartJs
+﻿namespace BootstrapHtmlHelper.ChartJs
 {
     public partial class chart<T>
     {

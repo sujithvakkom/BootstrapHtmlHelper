@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
-namespace BusinessExcel.Models.ChartJs
+namespace BootstrapHtmlHelper.ChartJs
 {
     public partial class options
     {

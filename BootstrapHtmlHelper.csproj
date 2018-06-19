@@ -54,6 +54,7 @@
     <Compile Include="AutoCompleteOptions.cs" />
     <Compile Include="ChartJs\Axes.cs" />
     <Compile Include="ChartJs\chart.cs" />
+    <Compile Include="ChartJs\ChartExtentions.cs" />
     <Compile Include="ChartJs\ChartType.cs" />
     <Compile Include="ChartJs\data.cs" />
     <Compile Include="ChartJs\datasets.cs" />
