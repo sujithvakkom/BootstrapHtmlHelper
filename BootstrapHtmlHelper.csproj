@@ -52,6 +52,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoCompleteOptions.cs" />
+    <Compile Include="ChartJs\Axes.cs" />
+    <Compile Include="ChartJs\chart.cs" />
+    <Compile Include="ChartJs\ChartExtentions.cs" />
+    <Compile Include="ChartJs\ChartType.cs" />
+    <Compile Include="ChartJs\ColorList.cs" />
+    <Compile Include="ChartJs\data.cs" />
+    <Compile Include="ChartJs\datasets.cs" />
+    <Compile Include="ChartJs\graph.cs" />
+    <Compile Include="ChartJs\layout.cs" />
+    <Compile Include="ChartJs\legend.cs" />
+    <Compile Include="ChartJs\options.cs" />
+    <Compile Include="ChartJs\padding.cs" />
+    <Compile Include="ChartJs\PointPair.cs" />
+    <Compile Include="ChartJs\scales.cs" />
+    <Compile Include="ChartJs\ticks.cs" />
+    <Compile Include="ChartJs\tooltips.cs" />
     <Compile Include="DecimalExtention.cs" />
     <Compile Include="HtmlFieldPrefixScope.cs" />
     <Compile Include="HtmlPrefixScopeExtensions.cs" />
