@@ -15,13 +15,18 @@ namespace BootstrapHtmlHelper
     public static partial class MyExtentions
     {
         public static IHtmlString AdminLTEParagraph(this HtmlHelper htmlHelper,
-            string expression//,
-                             //IDictionary<string, object> htmlAttributes =null,
+            string expression,
+            IDictionary<string, object> htmlAttributes =null//,
                              //IDictionary<string, object> htmlGlyphiconsAttributes=null,
                              //String glyphiconsName =null
             )
         {
             TagBuilder span = new TagBuilder("p");
+            if(htmlAttributes!=null)
+            foreach (var attribute in htmlAttributes)
+            {
+                span.MergeAttribute(attribute.Key, attribute.Value.ToString());
+            }
             //span.InnerHtml = htmlHelper.Display(expression).ToHtmlString();
             span.InnerHtml = expression;
             return MvcHtmlString.Create(span.ToString(TagRenderMode.Normal));
