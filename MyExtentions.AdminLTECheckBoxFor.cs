@@ -65,7 +65,10 @@ namespace BootstrapHtmlHelper
             var checkBoxSqure = getTag("div", tembAttrib);
 
             tembAttrib = new Dictionary<string, object>();
-            tembAttrib.Add("style", "position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;");
+
+            //Some attributes not working in check box.rafeeq changed exist attiributes.Old one commented
+            //tembAttrib.Add("style", "position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;");
+            tembAttrib.Add("style", "position: absolute; top: -20%; left: 40%; display: block; width: 140%; margin-left: 10px;  background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; ");
             tembAttrib.Add("type", "checkbox");
             var checkBox = getTag("input", tembAttrib);
 
