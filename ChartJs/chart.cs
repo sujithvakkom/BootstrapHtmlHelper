@@ -26,7 +26,7 @@
         public string type
         {
             get { return _type == null ? ChartType.line.ToString() : _type; }
-            set { _type = value; }
+            private set { _type = value; }
         }
         #endregion
         public data<T> data { get; set; }
