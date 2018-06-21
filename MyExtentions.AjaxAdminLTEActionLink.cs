@@ -84,7 +84,8 @@ namespace BootstrapHtmlHelper
                 linkText,
                 actionName,
                 controllerName,
-                ajaxOptions);
+                ajaxOptions,
+                carrot);
             else
             {
                 TagBuilder tagBuilderI = getCarrot(carrot);
