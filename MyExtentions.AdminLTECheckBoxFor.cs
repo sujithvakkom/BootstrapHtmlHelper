@@ -79,18 +79,19 @@ namespace BootstrapHtmlHelper
 
             checkBoxSqure.InnerHtml = checkBox.ToString() + insCheckHelper.ToString();
 
-            string placeHolder = "";
+            string placeHolder = "";// getTag("span", new Dictionary<string, object>());
             var memberExpression = expression.Body as MemberExpression;
             if (memberExpression != null)
             {
                 var x = memberExpression.Member;
                 var y = x.GetAttribute<DisplayAttribute>();
-                placeHolder = y.Name;
+                placeHolder = showLabel ? y.Name:"Y / N";
             }
 
-            checkBoxLabel.InnerHtml = checkBoxSqure.ToString() + placeHolder;
+            checkBoxLabel.InnerHtml =  checkBoxSqure.ToString()+placeHolder.ToString() ;
 
-            formGroup.InnerHtml = checkBoxLabel.ToString();
+
+            formGroup.InnerHtml =  checkBoxLabel.ToString();
 
             return MvcHtmlString.Create(formGroup.ToString());
 

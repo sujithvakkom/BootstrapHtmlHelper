@@ -56,6 +56,8 @@ namespace BootstrapHtmlHelper
             }
         }
 
+        public string ModelIDFunction { get; internal set; }
+
         public IEnumerable<SelectListItem> GetSelectionList()
         {
             List<SelectListItem> selectList = new List<SelectListItem>();

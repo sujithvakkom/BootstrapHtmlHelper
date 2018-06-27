@@ -104,7 +104,7 @@ namespace BootstrapHtmlHelper
             {
                 var x = memberExpressionStart.Member;
                 var y = x.GetAttribute<DisplayAttribute>();
-                htmlTextBoxAttributes.Add(new KeyValuePair<string, object>("placeholder", y.Name));
+                htmlTextBoxAttributes.Add(new KeyValuePair<string, object>("placeholder", y == null ? "Date" : y.Name));
             }
 
             //var memberExpressionEnd = expressionEndDate.Body as MemberExpression;
@@ -120,7 +120,7 @@ namespace BootstrapHtmlHelper
             {
                 var x = memberExpressionEnd.Member;
                 var y = x.GetAttribute<DisplayAttribute>();
-                htmlTextBoxAttributesEnd.Add(new KeyValuePair<string, object>("placeholder", y.Name));
+                htmlTextBoxAttributesEnd.Add(new KeyValuePair<string, object>("placeholder", y == null ? "Date" : y.Name));
             }
 
             var textboxStart = htmlHelper.TextBoxFor(expressionStartDate, htmlTextBoxAttributes);
