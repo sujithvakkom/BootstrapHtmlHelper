@@ -16,10 +16,14 @@ namespace BootstrapHtmlHelper
             if ((tag == null) && (htmlGroupAttributes == null))
                 formGroup.AddCssClass("form-group has-feedback");
             else
-                foreach (var attribute in htmlGroupAttributes)
+                try
                 {
-                    formGroup.Attributes.Add(attribute.Key, attribute.Value.ToString());
+                    foreach (var attribute in htmlGroupAttributes)
+                    {
+                        formGroup.Attributes.Add(attribute.Key, attribute.Value.ToString());
+                    }
                 }
+                catch (Exception) { }
             return formGroup;
         }
 

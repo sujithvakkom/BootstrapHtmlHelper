@@ -71,6 +71,8 @@
     <Compile Include="DecimalExtention.cs" />
     <Compile Include="HtmlFieldPrefixScope.cs" />
     <Compile Include="HtmlPrefixScopeExtensions.cs" />
+    <Compile Include="MyExtentions.IEnumerable.ToDataTable.cs" />
+    <Compile Include="MyExtentions.RenderSomePartial.cs" />
     <Compile Include="MyExtentions.AdminLTEDateRangePickerFor.cs" />
     <Compile Include="MyExtentions.AdminLTEDatePickerFor.cs" />
     <Compile Include="MyExtentions.GetPropValue.cs" />
