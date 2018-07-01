@@ -65,8 +65,6 @@ C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.Razor.dll
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.Razor.dll
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.Deployment.dll
-C:\WORKS\BootstrapHtmlHelper\bin\Debug\HtmlAgilityPack.pdb
-C:\WORKS\BootstrapHtmlHelper\bin\Debug\HtmlAgilityPack.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.Helpers.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.Mvc.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.xml
