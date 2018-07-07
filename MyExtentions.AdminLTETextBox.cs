@@ -41,7 +41,8 @@ namespace BootstrapHtmlHelper
             String glyphiconsName,
             bool showLabel = false,
             bool hasValidation = true,
-            bool showGlyphicons = false)
+            bool showGlyphicons = false,
+            object value = null)
         {
             //string name = ExpressionHelper.GetExpressionText(expression);
             string fullName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(name);
@@ -87,7 +88,9 @@ namespace BootstrapHtmlHelper
             */
             //htmlTextBoxAttributes.Add(new KeyValuePair<string, object>("placeholder", expression.Name));
 
-            var textbox = htmlHelper.TextBox(name:name,value:"", htmlAttributes:htmlTextBoxAttributes);
+            var textbox = htmlHelper.TextBox(name:name,
+                value:value, 
+                htmlAttributes:htmlTextBoxAttributes);
 
 
             modelState = htmlHelper.ViewData.ModelState[modelName];
