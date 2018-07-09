@@ -225,7 +225,9 @@ namespace BootstrapHtmlHelper
             }
 
             if (htmlDropDownAttributes == null) htmlDropDownAttributes = new Dictionary<String, object>();
-
+            if(htmlDropDownAttributes["class"]==null)
+                htmlDropDownAttributes.Add("class", "form-control select2");
+            htmlDropDownAttributes.Add("style", "width:100%");
 
             string modelName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(name);
             Dictionary<string, object> tembAttrib = new Dictionary<string, object>();
@@ -234,20 +236,16 @@ namespace BootstrapHtmlHelper
             //checkBoxLabel.InnerHtml = checkBoxSqure.ToString() + placeHolder;
             MvcHtmlString dropDown = null;
             IEnumerable<SelectListItem> selectDummy = new List<SelectListItem>() { };
-            
+
             if (autoCompleteOptions == null)
                 dropDown = (htmlHelper.DropDownListFor(expression,
             selectList: autoCompleteOptions.GetSelectionList(),
             htmlAttributes: new Dictionary<string, string> { { "", "" } }));
             else
                 dropDown =
-            (htmlHelper.DropDownListFor(expression,
-            selectList: selectDummy,
-            htmlAttributes: new
-            {
-                @class = "form-control select2",
-                @style = "width:100%"
-            }));
+                    (htmlHelper.DropDownListFor(expression,
+                    selectList: selectDummy,
+                    htmlAttributes: htmlDropDownAttributes));
 
             var validationSummary = htmlHelper.ValidationMessageFor(expression, null,
                 new { @class = "help-block" });
