@@ -225,9 +225,10 @@ namespace BootstrapHtmlHelper
             }
 
             if (htmlDropDownAttributes == null) htmlDropDownAttributes = new Dictionary<String, object>();
-            if(htmlDropDownAttributes["class"]==null)
+            if(!htmlDropDownAttributes.ContainsKey("class"))
                 htmlDropDownAttributes.Add("class", "form-control select2");
-            htmlDropDownAttributes.Add("style", "width:100%");
+            if(!htmlDropDownAttributes.ContainsKey("style"))
+                htmlDropDownAttributes.Add("style", "width:100%");
 
             string modelName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(name);
             Dictionary<string, object> tembAttrib = new Dictionary<string, object>();
