@@ -57,6 +57,7 @@ namespace BootstrapHtmlHelper
         }
 
         public string ModelIDFunction { get; internal set; }
+        public string Extra { get; internal set; }
 
         public IEnumerable<SelectListItem> GetSelectionList()
         {

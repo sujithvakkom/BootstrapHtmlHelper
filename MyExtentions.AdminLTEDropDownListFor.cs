@@ -84,11 +84,13 @@ namespace BootstrapHtmlHelper
                                         data:{FromatedSelectedData},
                                         placeholder:'{PlaceHolder}',
                                         ajax: {
+                                            traditional:true,
                                             url: '{AjaxURL}',
                                             data: function (params) {
                                                 var query = {
                                                     Search: params.term,
                                                     Page: params.page || 1
+                                                    {Extra}
                                                 }
 
                                                 // Query parameters will be ?search=[term]&type=public
@@ -188,7 +190,10 @@ namespace BootstrapHtmlHelper
             IDictionary<string, object> htmlGroupAttributes,
             AutoCompleteOptions autoCompleteOptions,
             bool showLabel = false,
-            bool hasValidation = true)
+            bool hasValidation = true,
+            //Expression<Func<TModel, TProperty>> extras = null
+            Expression<Func<TModel, TProperty>>[] extras = null
+            )
         {
 
             string name = ExpressionHelper.GetExpressionText(expression);
@@ -258,6 +263,7 @@ namespace BootstrapHtmlHelper
 
             autoCompleteOptions.ModelID = fullName.Replace('[', '_').Replace(']', '_').Replace('.', '_');
             autoCompleteOptions.ModelIDFunction = fullName.Replace('[', '_').Replace(']', '_').Replace('.', '_');
+            autoCompleteOptions.Extra = extras == null? "":getFormatedExtras(htmlHelper,extras);
             script.InnerHtml = AUTO_COMPLETE_DROP_SCRIPT.Inject(autoCompleteOptions);
 
             formGroup.InnerHtml = script.ToString(TagRenderMode.Normal)
@@ -268,6 +274,55 @@ namespace BootstrapHtmlHelper
 
             return MvcHtmlString.Create(formGroup.ToString());
 
+        }
+
+        private static string getFormatedExtras<TModel, TProperty>(HtmlHelper<TModel> htmlHelper,
+             Expression<Func<TModel, TProperty>> expression)
+        {
+
+            string result = "";
+            try
+            {
+                bool valid = expression != null;
+                result = valid ? "[" : result;
+
+                result = result + (result != "[" ? (",") : "");
+                string name = ExpressionHelper.GetExpressionText((LambdaExpression)expression);
+                string fullName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(name);
+                fullName = fullName.Replace('[', '_').Replace(']', '_').Replace('.', '_');
+                result = result + "$(\"#" + fullName + "\").val()";
+                result = result + (valid ? "]" : "");
+
+                result = valid ? ",Extra:" + result : result;
+            }
+            catch (Exception) { }
+            return result;
+        }
+
+        private static string getFormatedExtras<TModel>(HtmlHelper<TModel> htmlHelper,
+             LambdaExpression[] expressions)
+        {
+            const string containerStart = "{";
+            const string containerEnd = "}";
+            string result = "";
+            try
+            {
+                bool valid = ((expressions != null) && (expressions.Length > 0));
+                result = valid ? containerStart : result;
+                foreach (var expression in expressions)
+                {
+                    result = result + (result != containerStart ? (",") : "");
+                    string name = ExpressionHelper.GetExpressionText((LambdaExpression)expression);
+                    string fullName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(name);
+                    fullName = fullName.Replace('[', '_').Replace(']', '_').Replace('.', '_');
+                    result = result + (fullName+":$(\"#" + fullName + "\").val()");
+                }
+                result = result + (valid ? containerEnd : "");
+                result = valid ? ",Extra:JSON.stringify(" + result + ")" : result;
+                //(data)
+            }
+            catch (Exception) { }
+            return result;
         }
     }
 }
