@@ -64,6 +64,8 @@ C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.Razor.dll
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.Razor.dll
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\WORKS\BootstrapHtmlHelper\bin\Debug\HtmlAgilityPack.pdb
+C:\WORKS\BootstrapHtmlHelper\bin\Debug\HtmlAgilityPack.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.Helpers.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.Mvc.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.xml
@@ -71,6 +73,6 @@ C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.Razor.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.Razor.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\Microsoft.Web.Infrastructure.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.csprojResolveAssemblyReference.cache
 C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.dll
 C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.pdb
-C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.csprojResolveAssemblyReference.cache
