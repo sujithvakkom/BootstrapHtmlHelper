@@ -5,7 +5,6 @@ D:\Users\srkrishnan\GitHub\BootstrapHtmlHelper\obj\Release\BootstrapHtmlHelper.d
 D:\Users\srkrishnan\GitHub\BootstrapHtmlHelper\obj\Release\BootstrapHtmlHelper.pdb
 D:\Users\srkrishnan\GitHub\BootstrapHtmlHelper\bin\Release\System.Web.Mvc.dll
 D:\Users\srkrishnan\GitHub\BootstrapHtmlHelper\bin\Release\System.Web.Mvc.xml
-C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Release\BootstrapHtmlHelper.csprojResolveAssemblyReference.cache
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Release\BootstrapHtmlHelper.dll
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Release\BootstrapHtmlHelper.pdb
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Release\BootstrapHtmlHelper.dll
@@ -25,7 +24,6 @@ C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Release\System.Web.
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Release\System.Web.WebPages.xml
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Release\System.Web.Razor.xml
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Release\System.Web.WebPages.Razor.xml
-C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Release\Microsoft.Web.Infrastructure.xml
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Release\System.Web.WebPages.Deployment.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Release\BootstrapHtmlHelper.dll
 C:\WORKS\BootstrapHtmlHelper\bin\Release\BootstrapHtmlHelper.pdb

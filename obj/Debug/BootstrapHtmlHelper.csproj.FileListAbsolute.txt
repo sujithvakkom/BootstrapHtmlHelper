@@ -51,7 +51,6 @@ C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.Mv
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.xml
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.Razor.xml
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.Razor.xml
-C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\Microsoft.Web.Infrastructure.xml
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.dll
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.pdb
