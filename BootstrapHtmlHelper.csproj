@@ -118,6 +118,7 @@
     <Compile Include="MyExtentions.cs" />
     <Compile Include="MyExtentions.AdminLTEActionLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtension.Formatter.cs" />
     <Compile Include="StringInjectExtension.cs" />
     <Compile Include="WebGridExtensions.cs" />
   </ItemGroup>

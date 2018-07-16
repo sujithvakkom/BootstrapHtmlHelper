@@ -1,34 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
+using System.Collections;
 using System.Globalization;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Web;
-using System.Web.Helpers;
-using System.Web.Mvc;
-using System.Web.Mvc.Html;
+using System.ComponentModel;
+
 
 namespace BootstrapHtmlHelper
 {
-    public static partial class MyExtentions
+    public static partial class StringInjectExtension
     {
-        public static string NUMARIC = "numaric";
-        public static IHtmlString AdminLTEParagraph(this HtmlHelper htmlHelper,
-            object expression,
-            IDictionary<string, object> htmlAttributes = null,
+        const string NUMARIC = "numaric";
+        public static string AdminLTEFormatedString(this string expression, string htmlAttributes = NUMARIC,
             string Formate = null
             )
         {
-            string temp = htmlAttributes == null ? "" : htmlAttributes["class"] == null ? "" : htmlAttributes["class"].ToString();
-            string formatedValue ="";
-            TagBuilder span = new TagBuilder("p");
-            if(htmlAttributes!=null)
-            foreach (var attribute in htmlAttributes)
-            {
-                span.MergeAttribute(attribute.Key, attribute.Value.ToString());
-            }
+            string formatedValue = "";
             try
             {
                 if (expression != null)
@@ -46,7 +32,7 @@ namespace BootstrapHtmlHelper
                         case TypeCode.Single:
                             if (!string.IsNullOrEmpty(Formate))
                                 formatedValue = string.Format(Formate, expression);
-                            else if (htmlAttributes != null && temp.Contains(NUMARIC))
+                            else if (htmlAttributes != null && htmlAttributes == NUMARIC)
                                 formatedValue = String.Format("{0:n}", expression);
                             else formatedValue = expression.ToString();
                             break;
@@ -56,11 +42,13 @@ namespace BootstrapHtmlHelper
                             break;
                     }
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 formatedValue = expression.ToString();
             }
 
-            span.InnerHtml = formatedValue;
-            return MvcHtmlString.Create(span.ToString(TagRenderMode.Normal));
-        } }
+            return formatedValue;
+        }
+
+    }
 }
