@@ -18,7 +18,7 @@ namespace BootstrapHtmlHelper
                     ModelErrors = ModelErrors == "" ? error.ErrorMessage :
                         ModelErrors + Environment.NewLine + error.ErrorMessage;
                 }
-            }
+            } 
             return ModelErrors;
         }
     }

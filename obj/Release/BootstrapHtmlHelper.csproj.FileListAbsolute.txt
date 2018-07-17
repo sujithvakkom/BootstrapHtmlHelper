@@ -43,3 +43,4 @@ C:\WORKS\BootstrapHtmlHelper\bin\Release\Microsoft.Web.Infrastructure.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Release\System.Web.WebPages.Deployment.xml
 C:\WORKS\BootstrapHtmlHelper\obj\Release\BootstrapHtmlHelper.dll
 C:\WORKS\BootstrapHtmlHelper\obj\Release\BootstrapHtmlHelper.pdb
+C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Release\BootstrapHtmlHelper.csprojResolveAssemblyReference.cache
