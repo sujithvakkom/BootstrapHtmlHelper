@@ -53,8 +53,13 @@ namespace BootstrapHtmlHelper
                 }
             }
              * */
-            tembAttrib = new Dictionary<string, object>();
-            tembAttrib.Add("class","");
+            tembAttrib = htmlLabelAttributes!=null? (Dictionary<string, object>) htmlLabelAttributes: new Dictionary<string, object>();
+            if(!tembAttrib.ContainsKey("class"))
+                tembAttrib.Add("class","");
+            if (!showLabel)
+            {
+                tembAttrib["class"] += (" " + "text-transparent");
+            }
             var checkBoxLabel = getTag("label", tembAttrib);
 
             tembAttrib = new Dictionary<string, object>();
@@ -68,13 +73,15 @@ namespace BootstrapHtmlHelper
 
             //Some attributes not working in check box.rafeeq changed exist attiributes.Old one commented
             //tembAttrib.Add("style", "position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;");
-            tembAttrib.Add("style", "position: absolute; top: -20%; left: 40%; display: block; width: 140%; margin-left: 10px;  background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; ");
+            tembAttrib.Add("style", "position: absolute; top: -20%; left: 40%; display: block; margin-left: 10px;  background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; ");
             tembAttrib.Add("type", "checkbox");
-            var checkBox = getTag("input", tembAttrib);
+            var inp = getTag("input", tembAttrib);
+
+            var checkBox  = htmlHelper.CheckBoxFor(expression,tembAttrib);
 
             tembAttrib = new Dictionary<string, object>();
             tembAttrib.Add("class", "iCheck-helper");
-            tembAttrib.Add("style", "position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;");
+            tembAttrib.Add("style", "position: absolute; top: -20%; left: -20%; display: block; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;");
             var insCheckHelper = getTag("ins", tembAttrib);
 
             checkBoxSqure.InnerHtml = checkBox.ToString() + insCheckHelper.ToString();
@@ -85,7 +92,7 @@ namespace BootstrapHtmlHelper
             {
                 var x = memberExpression.Member;
                 var y = x.GetAttribute<DisplayAttribute>();
-                placeHolder = showLabel ? y.Name:"Y / N";
+                placeHolder = showLabel ? y.Name:"i";
             }
 
             checkBoxLabel.InnerHtml =  checkBoxSqure.ToString()+placeHolder.ToString() ;
