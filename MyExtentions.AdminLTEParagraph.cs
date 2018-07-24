@@ -15,20 +15,20 @@ namespace BootstrapHtmlHelper
     public static partial class MyExtentions
     {
         public static string NUMARIC = "numaric";
-        public static IHtmlString AdminLTEParagraph(this HtmlHelper htmlHelper,
-            object expression,
+        public static MvcHtmlString AdminLTEParagraph<TModel>(this HtmlHelper htmlHelper,
+            TModel expression,
             IDictionary<string, object> htmlAttributes = null,
             string Formate = null
             )
         {
             string temp = htmlAttributes == null ? "" : htmlAttributes["class"] == null ? "" : htmlAttributes["class"].ToString();
-            string formatedValue ="";
+            string formatedValue = "";
             TagBuilder span = new TagBuilder("p");
-            if(htmlAttributes!=null)
-            foreach (var attribute in htmlAttributes)
-            {
-                span.MergeAttribute(attribute.Key, attribute.Value.ToString());
-            }
+            if (htmlAttributes != null)
+                foreach (var attribute in htmlAttributes)
+                {
+                    span.MergeAttribute(attribute.Key, attribute.Value.ToString());
+                }
             try
             {
                 if (expression != null)
@@ -52,15 +52,36 @@ namespace BootstrapHtmlHelper
                             break;
                         case TypeCode.String:
                         default:
-                            formatedValue = string.IsNullOrEmpty(Formate) ? (string)expression : string.Format(Formate, expression);
+                            formatedValue = string.IsNullOrEmpty(Formate) ? expression.ToString() : string.Format(Formate, expression);
                             break;
                     }
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 formatedValue = expression.ToString();
             }
 
             span.InnerHtml = formatedValue;
             return MvcHtmlString.Create(span.ToString(TagRenderMode.Normal));
-        } }
+        }
+        public static MvcHtmlString AdminLTEParagraphFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TProperty>> expression,
+            IDictionary<string, object> htmlAttributes = null,
+            string Formate = null
+            )
+        {
+            var name = htmlHelper.GetMemberExpressionName(expression);
+            
+            var type= htmlHelper.GetMemberExpressionType(expression);
+
+            var value = htmlHelper.GetMemberExpressionValue(expression);
+            //var value = htmlHelper.ValueFor(expression);
+            if (!htmlAttributes.ContainsKey("id")) htmlAttributes.Add("id", name);
+            return htmlHelper.AdminLTEParagraph(
+                value, 
+                htmlAttributes, 
+                Formate
+                );
+        }
+    }
 }

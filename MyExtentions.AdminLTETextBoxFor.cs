@@ -53,8 +53,11 @@ namespace BootstrapHtmlHelper
             string modelName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(name);
 
             var formGroup = new TagBuilder("div");
-            if (htmlGroupAttributes == null)
-                formGroup.AddCssClass("form-group has-feedback");
+            if (htmlGroupAttributes == null) { 
+                formGroup.AddCssClass("form-group");
+                if (showGlyphicons)
+                    formGroup.AddCssClass("has-feedback");
+            }
             else
                 foreach (var attribute in htmlGroupAttributes)
                 {

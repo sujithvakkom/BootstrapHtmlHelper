@@ -46,7 +46,8 @@ namespace BootstrapHtmlHelper
 
         #endregion
 
-        public static MvcHtmlString AdminLTEDropDownList(this HtmlHelper htmlHelper, string name, IEnumerable<SelectListItem> selectList, string optionLabel, IDictionary<string, object> htmlAttributes)
+        public static MvcHtmlString AdminLTEDropDownList(this HtmlHelper htmlHelper, 
+            string name, IEnumerable<SelectListItem> selectList, string optionLabel, IDictionary<string, object> htmlAttributes)
         {
             return DropDownListHelper(htmlHelper, metadata: null, expression: name, selectList: selectList, optionLabel: optionLabel, htmlAttributes: htmlAttributes);
         }
