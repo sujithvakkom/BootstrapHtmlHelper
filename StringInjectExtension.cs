@@ -7,7 +7,7 @@ using System.ComponentModel;
 [assembly: CLSCompliant(true)]
 namespace BootstrapHtmlHelper
 {
-    public static class StringInjectExtension
+    public static partial class StringInjectExtension
     {
         /// <summary>
         /// Extension method that replaces keys in a string with the values of matching object properties.
