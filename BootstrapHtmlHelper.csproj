@@ -97,6 +97,7 @@
     <Compile Include="HtmlFieldPrefixScope.cs" />
     <Compile Include="HtmlPrefixScopeExtensions.cs" />
     <Compile Include="ModelStateDictionary.GetErrors.cs" />
+    <Compile Include="MyExtentions.AjaxExtensions.AdminLTEActionLink.cs" />
     <Compile Include="MyExtentions.URIBulider.cs" />
     <Compile Include="MyExtentions.AdminLTEFromSubmitter.cs" />
     <Compile Include="MyExtentions.IEnumerable.ToDataTable.cs" />
