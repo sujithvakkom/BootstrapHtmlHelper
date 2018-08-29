@@ -70,5 +70,6 @@ C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.Razor.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.Razor.xml
+C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.csprojResolveAssemblyReference.cache
 C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.dll
 C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.pdb
