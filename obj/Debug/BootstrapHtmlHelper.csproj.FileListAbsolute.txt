@@ -72,3 +72,4 @@ C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.We
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.dll
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.pdb
+C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.csprojResolveAssemblyReference.cache
