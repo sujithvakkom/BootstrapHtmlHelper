@@ -51,6 +51,9 @@ C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.dll
 C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.pdb
 C:\WORKS\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.csprojResolveAssemblyReference.cache
 C:\WORKS\BootstrapHtmlHelper\bin\Debug\Newtonsoft.Json.dll
+C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.Helpers.Resources.CommonResources.resources
+C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.Helpers.Resources.HelpersResources.resources
+C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\obj\Debug\BootstrapHtmlHelper.csproj.GenerateResource.Cache
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\BootstrapHtmlHelper.dll
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\BootstrapHtmlHelper.pdb
 C:\Users\srkrishnan\Documents\GitHub\BootstrapHtmlHelper\bin\Debug\HtmlAgilityPack.dll

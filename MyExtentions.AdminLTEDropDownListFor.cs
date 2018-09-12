@@ -83,6 +83,7 @@ namespace BootstrapHtmlHelper
                                     $('#form-group-{ModelID} > .select2').select2({
                                         data:{FromatedSelectedData},
                                         placeholder:'{PlaceHolder}',
+                                        {DropdownParent}
                                         ajax: {
                                             traditional:true,
                                             url: '{AjaxURL}',
@@ -189,7 +190,7 @@ namespace BootstrapHtmlHelper
             IDictionary<string, object> htmlDropDownAttributes,
             IDictionary<string, object> htmlGroupAttributes,
             AutoCompleteOptions autoCompleteOptions,
-            bool showLabel = false,
+            bool showLabel = false, string dropdownParent=null,
             bool hasValidation = true,
             //Expression<Func<TModel, TProperty>> extras = null
             Expression<Func<TModel, TProperty>>[] extras = null

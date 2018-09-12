@@ -1,42 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Text;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.Mvc.Ajax;
 using System.Web.WebPages;
 
 namespace BootstrapHtmlHelper
 {
-    public static class WebGridExtensions
+    public static partial class MyExtentions
     {
-        public static HelperResult PagerList(
-            this WebGrid webGrid,
+        public static HelperResult Pager(this AjaxHelper helper, WebGrid webGrid, string TargetDiv,
             WebGridPagerModes mode = WebGridPagerModes.NextPrevious | WebGridPagerModes.Numeric,
             string firstText = null,
             string previousText = null,
             string nextText = null,
             string lastText = null,
-            int numericLinksCount = 5,
-            string paginationStyle = null)
+            int numericLinksCount = 5, string ActionName = "Index",
+            bool explicitlyCalled = true)
         {
-            if (String.IsNullOrEmpty(paginationStyle)) paginationStyle = "pagination";
-            return PagerList(webGrid, mode, firstText, previousText, nextText, lastText, numericLinksCount, paginationStyle, explicitlyCalled: true);
-        }
-
-        private static HelperResult PagerList(
-            WebGrid webGrid,
-            WebGridPagerModes mode,
-            string firstText,
-            string previousText,
-            string nextText,
-            string lastText,
-            int numericLinksCount,
-            string paginationStyle,
-            bool explicitlyCalled)
-        {
-
             int currentPage = webGrid.PageIndex;
             int totalPages = webGrid.PageCount;
+            int PageSize = webGrid.RowsPerPage;
+
             int lastPage = totalPages - 1;
 
             var ul = new TagBuilder("ul");
@@ -52,7 +40,7 @@ namespace BootstrapHtmlHelper
                 });
             }
 
-            if (ModeEnabled(mode,WebGridPagerModes.FirstLast))
+            if (ModeEnabled(mode, WebGridPagerModes.FirstLast))
             {
                 if (String.IsNullOrEmpty(firstText))
                 {
@@ -61,7 +49,7 @@ namespace BootstrapHtmlHelper
                 var url = webGrid.GetPageUrl(0);
                 var part = new TagBuilder("li")
                 {
-                    InnerHtml = GridLink(webGrid, webGrid.GetPageUrl(0), firstText)
+                    InnerHtml = helper.GridActionLink(webGrid, 0, ActionName, firstText).ToHtmlString()
                 };
 
                 if (currentPage == 0)
@@ -73,7 +61,6 @@ namespace BootstrapHtmlHelper
                 li.Add(part);
 
             }
-
             if (ModeEnabled(mode, WebGridPagerModes.NextPrevious))
             {
                 if (String.IsNullOrEmpty(previousText))
@@ -85,7 +72,7 @@ namespace BootstrapHtmlHelper
 
                 var part = new TagBuilder("li")
                 {
-                    InnerHtml = GridLink(webGrid, webGrid.GetPageUrl(page), previousText)
+                    InnerHtml = helper.GridActionLink(webGrid, page, ActionName, previousText).ToHtmlString()
                 };
 
                 if (currentPage == 0)
@@ -97,8 +84,6 @@ namespace BootstrapHtmlHelper
                 li.Add(part);
 
             }
-
-
             if (ModeEnabled(mode, WebGridPagerModes.Numeric) && (totalPages > 1))
             {
                 int last = currentPage + (numericLinksCount / 2);
@@ -119,7 +104,7 @@ namespace BootstrapHtmlHelper
                     var pageText = (i + 1).ToString(CultureInfo.InvariantCulture);
                     var part = new TagBuilder("li")
                     {
-                        InnerHtml = GridLink(webGrid, webGrid.GetPageUrl(i), pageText)
+                        InnerHtml = helper.GridActionLink(webGrid, i +1, ActionName, pageText).ToHtmlString()
                     };
 
                     if (i == currentPage)
@@ -132,7 +117,6 @@ namespace BootstrapHtmlHelper
 
                 }
             }
-
             if (ModeEnabled(mode, WebGridPagerModes.NextPrevious))
             {
                 if (String.IsNullOrEmpty(nextText))
@@ -144,7 +128,7 @@ namespace BootstrapHtmlHelper
 
                 var part = new TagBuilder("li")
                 {
-                    InnerHtml = GridLink(webGrid, webGrid.GetPageUrl(page), nextText)
+                    InnerHtml = helper.GridActionLink(webGrid, page, ActionName, nextText).ToHtmlString()
                 };
 
                 if (currentPage == lastPage)
@@ -156,7 +140,6 @@ namespace BootstrapHtmlHelper
                 li.Add(part);
 
             }
-
             if (ModeEnabled(mode, WebGridPagerModes.FirstLast))
             {
                 if (String.IsNullOrEmpty(lastText))
@@ -166,7 +149,7 @@ namespace BootstrapHtmlHelper
 
                 var part = new TagBuilder("li")
                 {
-                    InnerHtml = GridLink(webGrid, webGrid.GetPageUrl(lastPage), lastText)
+                    InnerHtml = helper.GridActionLink(webGrid,lastPage, ActionName, lastText).ToHtmlString()
                 };
 
                 if (currentPage == lastPage)
@@ -178,16 +161,15 @@ namespace BootstrapHtmlHelper
                 li.Add(part);
 
             }
-
             ul.InnerHtml = string.Join("", li);
 
             var html = "";
             if (explicitlyCalled && webGrid.IsAjaxEnabled)
             {
                 var span = new TagBuilder("span");
-                span.MergeAttribute("data-swhgajax", "true");
-                span.MergeAttribute("data-swhgcontainer", webGrid.AjaxUpdateContainerId);
-                span.MergeAttribute("data-swhgcallback", webGrid.AjaxUpdateCallback);
+                //span.MergeAttribute("data-swhgajax", "true");
+                //span.MergeAttribute("data-swhgcontainer", webGrid.AjaxUpdateContainerId);
+                //span.MergeAttribute("data-swhgcallback", webGrid.AjaxUpdateCallback);
 
                 span.InnerHtml = ul.ToString();
                 html = span.ToString();
@@ -203,19 +185,18 @@ namespace BootstrapHtmlHelper
             {
                 writer.Write(html);
             });
+
         }
 
-        private static String GridLink(WebGrid webGrid, string url, string text)
+        private static MvcHtmlString GridActionLink(this AjaxHelper helper, WebGrid webGrid, int page, string actionName, string text)
         {
-            TagBuilder builder = new TagBuilder("a");
-            builder.SetInnerText(text);
-            builder.MergeAttribute("href", url);
-            if (webGrid.IsAjaxEnabled)
-            {
-                builder.MergeAttribute("data-swhglnk", "true");
-            }
-            builder.AddCssClass("page-link");
-            return builder.ToString(TagRenderMode.Normal);
+            string url = "";
+            if (webGrid.PageCount < page)
+                url = webGrid.GetPageUrl(page);
+            //webGrid.sor
+            return helper.ActionLink(text, actionName, new { @Page = page }, new AjaxOptions() {
+                UpdateTargetId = webGrid.AjaxUpdateContainerId
+            }, new { @class = "page-link" });
         }
 
 
@@ -223,6 +204,5 @@ namespace BootstrapHtmlHelper
         {
             return (mode & modeCheck) == modeCheck;
         }
-
     }
 }
