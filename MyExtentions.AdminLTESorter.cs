@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BootstrapHtmlHelper.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
@@ -16,6 +17,13 @@ namespace BootstrapHtmlHelper
     {
 
         public static string AdminLTESorter(this HtmlHelper htmlHelper, string columnName, string columnHeader, WebGrid grid)
+        {
+            return string.Format("{0} {1}", columnHeader, grid.SortColumn == columnName ?
+                grid.SortDirection == SortDirection.Ascending ? "▲" :
+                "▼" : string.Empty);
+        }
+
+        public static string AdminLTESorter(this HtmlHelper htmlHelper, string columnName, string columnHeader, MyWebGrid grid)
         {
             return string.Format("{0} {1}", columnHeader, grid.SortColumn == columnName ?
                 grid.SortDirection == SortDirection.Ascending ? "▲" :

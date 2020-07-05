@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjaxOptionExtention.cs" />
     <Compile Include="AutoCompleteOptions.cs" />
     <Compile Include="ChartJs\Axes.cs" />
     <Compile Include="ChartJs\chart.cs" />
@@ -89,9 +90,15 @@
     <Compile Include="ChartJs\ticks.cs" />
     <Compile Include="ChartJs\tooltips.cs" />
     <Compile Include="DecimalExtention.cs" />
+    <Compile Include="Helpers\Resources\CommonResources.Designer.cs" />
+    <Compile Include="Helpers\Resources\HelpersResources.Designer.cs" />
+    <Compile Include="Helpers\WebGrid\WebGridExtentions.cs" />
     <Compile Include="HtmlFieldPrefixScope.cs" />
     <Compile Include="HtmlPrefixScopeExtensions.cs" />
+    <Compile Include="Internal\Web\Utils\DynamicHelper.cs" />
     <Compile Include="ModelStateDictionary.GetErrors.cs" />
+    <Compile Include="MyExtentions.AjaxPager.cs" />
+    <Compile Include="MyExtentions.AjaxExtensions.AdminLTEActionLink.cs" />
     <Compile Include="MyExtentions.URIBulider.cs" />
     <Compile Include="MyExtentions.AdminLTEFromSubmitter.cs" />
     <Compile Include="MyExtentions.IEnumerable.ToDataTable.cs" />
@@ -121,6 +128,15 @@
     <Compile Include="StringExtension.Formatter.cs" />
     <Compile Include="StringInjectExtension.cs" />
     <Compile Include="WebGridExtensions.cs" />
+    <Compile Include="Helpers\WebGrid\IWebGridDataSource.cs" />
+    <Compile Include="Helpers\WebGrid\PreComputedGridDataSource.cs" />
+    <Compile Include="Helpers\WebGrid\SortInfo.cs" />
+    <Compile Include="Helpers\WebGrid\MyWebGrid.cs" />
+    <Compile Include="Helpers\WebGrid\WebGridColumn.cs" />
+    <Compile Include="Helpers\WebGrid\WebGridDataSource.cs" />
+    <Compile Include="Helpers\WebGrid\WebGridPagerModes.cs" />
+    <Compile Include="Helpers\WebGrid\WebGridRow.cs" />
+    <Compile Include="Helpers\WebGrid\_WebGridRenderer.generated.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyExtentions.AdminLTEDropDownList.cs" />
@@ -128,6 +144,14 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Helpers\WebGrid\_WebGridRenderer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Helpers\Resources\CommonResources.resx" />
+    <EmbeddedResource Include="Helpers\Resources\HelpersResources.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -56,6 +56,12 @@ namespace BootstrapHtmlHelper
         }
 
         public string ModelIDFunction { get; internal set; }
+
+        private string _DropdownParent = null;
+        public string DropdownParent { get {
+                if (String.IsNullOrEmpty(_DropdownParent)) return "";
+                return "dropdownParent: $('#"+_DropdownParent+"'),";
+            } set { _DropdownParent = value; } }
         public string Extra { get; internal set; }
 
         public IEnumerable<SelectListItem> GetSelectionList()

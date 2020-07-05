@@ -75,7 +75,13 @@ namespace BootstrapHtmlHelper
             //tembAttrib.Add("style", "position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;");
             tembAttrib.Add("style", "position: absolute; top: -20%; left: 40%; display: block; margin-left: 10px;  background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; ");
             tembAttrib.Add("type", "checkbox");
-            var inp = getTag("input", tembAttrib);
+            //var inp = getTag("input", tembAttrib);
+            foreach (var attr in htmlCheckBoxAttributes) {
+                if (tembAttrib.ContainsKey(attr.Key))
+                    tembAttrib[attr.Key] += (" "+attr.Value);
+                tembAttrib.Add(attr.Key, attr.Value);
+            }
+
 
             var checkBox  = htmlHelper.CheckBoxFor(expression,tembAttrib);
 
